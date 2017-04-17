@@ -9,7 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bookshelf": "^0.10.3",
+    "bookshelf": "^0.10.2",
+    "knex": "^0.12.6",
     "sqlite3": "^3.1.8"
   }
 }
