@@ -12,7 +12,7 @@ const client = knex({
 const orm = bookshelf(client);
 
 const Profile = orm.Model.extend({
-  tablename: 'profiles',
+  tableName: 'profiles',
   member: function(){
     return this.belongsTo(Member);
   }
@@ -20,7 +20,7 @@ const Profile = orm.Model.extend({
 });
 
 const Member = orm.Model.extend({
-	tablename: 'members',
+	tableName: 'members',
 	classes: function(){
 		return this.belongsToMany(Class, 'classes_members')
 	},
@@ -31,7 +31,7 @@ const Member = orm.Model.extend({
 });
 
 const Class = orm.Model.extend({
-	tablename: 'classes',
+	tableName: 'classes',
 	members: function(){
 		return this.belongsToMany(Member, 'classes_members')
 	}
