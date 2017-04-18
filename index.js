@@ -1,15 +1,18 @@
-const config = require('./knexfile');
 const knex = require('knex');
 const bookshelf = require('bookshelf');
 const path = require('path');
-const fs = require('fs');
 
-const client = knex(config['development']);
+const client = knex({
+	client: "sqlite3",
+	connection: {
+		filename: path.join(__dirname, 'gym.db')
+	}
+});
 
 const orm = bookshelf(client);
 
 const Profile = orm.Model.extend({
-  tableName: 'profiles',
+  tablename: 'profiles',
   member: function(){
     return this.belongsTo(Member);
   }
@@ -17,7 +20,7 @@ const Profile = orm.Model.extend({
 });
 
 const Member = orm.Model.extend({
-	tableName: 'members',
+	tablename: 'members',
 	classes: function(){
 		return this.belongsToMany(Class, 'classes_members')
 	},
@@ -28,7 +31,7 @@ const Member = orm.Model.extend({
 });
 
 const Class = orm.Model.extend({
-	tableName: 'classes',
+	tablename: 'classes',
 	members: function(){
 		return this.belongsToMany(Member, 'classes_members')
 	}
