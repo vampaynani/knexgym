@@ -9,3 +9,10 @@ const client = knex({
 });
 
 const orm = bookshelf(client);
+
+const Profile = orm.Model.extend({
+  tablename: 'profiles',
+  member: function(){
+    return this.belongs>To(Member);
+  }
+});
