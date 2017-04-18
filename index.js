@@ -1,6 +1,6 @@
-import knex from 'knex';
-import bookshelf from 'bookshelf';
-
+const knex = require('knex');
+const bookshelf = require('bookshelf');
+const path = require('path');
 const client = knex({
 	client: "sqlite3",
 	connection: {
@@ -37,4 +37,6 @@ const Class = orm.Model.extend({
 
 })
 
-
+Member.where('id',1).fetch().then(function(member){
+	console.log(member.toJSON());
+})
