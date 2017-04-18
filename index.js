@@ -1,5 +1,11 @@
-import knex from 'knex';
-import bookshelf from 'bookshelf';
+const knex = require('knex');
+const bookshelf = require('bookshelf');
+const path = require('path');
+const fs = require('fs');
+
+const dbPath = path.join(__dirname, 'gym.db');
+console.log(dbPath);
+console.log(fs.statSync(dbPath).isFile());
 
 const client = knex({
 	client: "sqlite3",
@@ -38,3 +44,6 @@ const Class = orm.Model.extend({
 })
 
 
+Member.where('id',1).fetch().then(function(member){
+ console.log(member);
+});
