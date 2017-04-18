@@ -13,6 +13,28 @@ const orm = bookshelf(client);
 const Profile = orm.Model.extend({
   tablename: 'profiles',
   member: function(){
-    return this.belongs>To(Member);
+    return this.belongsTo(Member);
   }
+
 });
+
+const Member = orm.Model.extend({
+	tablename: 'members',
+	classes: function(){
+		return this.belongsToMany(Class, 'classes_members')
+	},
+	profile: function(){
+		return this.hasOne(Profile)
+	}
+
+});
+
+const Class = orm.Model.extend({
+	tablename: 'classes',
+	members: function(){
+		return this.belongsToMany(Member, 'classes_members')
+	}
+
+})
+
+
