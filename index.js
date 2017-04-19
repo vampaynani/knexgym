@@ -11,32 +11,52 @@ const client = knex({
 const orm = bookshelf(client);
 
 const Profile = orm.Model.extend({
-  tablename: 'profiles',
-  member: function(){
+  tableName: 'profiles',
+  member: () => {
     return this.belongsTo(Member);
   }
 
 });
 
 const Member = orm.Model.extend({
-	tablename: 'members',
-	classes: function(){
-		return this.belongsToMany(Class, 'classes_members')
+	tableName: 'members',
+	classes: () => {
+		return this.belongsToMany(Class, 'classes_members');
 	},
-	profile: function(){
-		return this.hasOne(Profile)
+	profile: () => {
+		return this.hasOne(Profile);
 	}
 
 });
 
 const Class = orm.Model.extend({
-	tablename: 'classes',
-	members: function(){
-		return this.belongsToMany(Member, 'classes_members')
+	tableName: 'classes',
+	members: () => {
+		return this.belongsToMany(Member, 'classes_members');
 	}
 
 })
 
+// const Classes_Members = orm.Model.extend({
+// 	tableName: 'classes_members',
+// 	class: () => {
+// 		return this.hasMany(Class, 'class');
+// 	},
+// 	member: () => {
+// 		return this.hasMany(Member, 'member');
+// 	}
+
+// })
+
+ //knex PostgreSQL syntax
+
 Member.where('id',1).fetch().then(function(member){
-	console.log(member.toJSON());
+	console.log(54, member.toJSON());
 })
+
+// Classes_Members.where('class_id', 3).fetch().then( function(classes){
+// 	console.log(58, classes.toJSON());
+// })
+
+// let test = knex('member').join('classes_members', 'member.id','=', 'classes_members.id').select('member.id','classes_members.class_id')
+// console.log(62, test)
