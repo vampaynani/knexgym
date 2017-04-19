@@ -38,6 +38,6 @@ const Class = orm.Model.extend({
 
 })
 
-Member.where('id',1).fetch().then(function(member){
+Member.where('id',2).fetch({withRelated: 'classes'}).then(function(member){
 	console.log(member.toJSON());
 })
