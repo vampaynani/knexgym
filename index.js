@@ -1,6 +1,7 @@
 const knex = require('knex');
 const bookshelf = require('bookshelf');
 const path = require('path');
+
 const client = knex({
 	client: "sqlite3",
 	connection: {
@@ -12,6 +13,7 @@ const orm = bookshelf(client);
 
 const Profile = orm.Model.extend({
   tableName: 'profiles',
+
   member: () => {
     return this.belongsTo(Member);
   }
