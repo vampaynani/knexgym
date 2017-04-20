@@ -1,3 +1,8 @@
+//node_modules/.bin/knex init
+
+//To run migration and seed files
+//node_modules/.bin/knex migrate:latest
+//node_modules/.bin/knex seed:run
 const config = require('./knexfile');
 const knex = require('knex');
 const bookshelf = require('bookshelf');
