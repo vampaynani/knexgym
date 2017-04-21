@@ -39,26 +39,8 @@ const Class = orm.Model.extend({
 
 })
 
-// const Classes_Members = orm.Model.extend({
-// 	tableName: 'classes_members',
-// 	class: () => {
-// 		return this.hasMany(Class, 'class');
-// 	},
-// 	member: () => {
-// 		return this.hasMany(Member, 'member');
-// 	}
-
-// })
-
- //knex PostgreSQL syntax
 
 Member.where('id',1).fetch().then(function(member){
 	console.log(54, member.toJSON());
 })
 
-// Classes_Members.where('class_id', 3).fetch().then( function(classes){
-// 	console.log(58, classes.toJSON());
-// })
-
-// let test = knex('member').join('classes_members', 'member.id','=', 'classes_members.id').select('member.id','classes_members.class_id')
-// console.log(62, test)
