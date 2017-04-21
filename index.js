@@ -13,34 +13,36 @@ const orm = bookshelf(client);
 
 const Profile = orm.Model.extend({
   tableName: 'profiles',
-
-  member: () => {
+  member: function(){
     return this.belongsTo(Member);
   }
-
 });
 
 const Member = orm.Model.extend({
 	tableName: 'members',
-	classes: () => {
+	classes: function(){
 		return this.belongsToMany(Class, 'classes_members');
 	},
-	profile: () => {
+	profile: function(){
 		return this.hasOne(Profile);
 	}
-
 });
 
 const Class = orm.Model.extend({
 	tableName: 'classes',
-	members: () => {
+	members: function(){
 		return this.belongsToMany(Member, 'classes_members');
 	}
+});
 
-})
 
 
-Member.where('id',1).fetch().then(function(member){
-	console.log(54, member.toJSON());
-})
+
+//Member.where('id',2).fetch({withRelated: ['profile','classes']}).then(function(member){
+//	console.log(member.toJSON());
+//});
+
+Class.where('id', 1).fetch({withRelated: ['members', 'members.profile']}).then(function(_class){
+	console.log(_class.toJSON());
+});
 
